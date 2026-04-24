@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
+
+
+/* 2. Import Tailwind v4 */
+@import "tailwindcss";
+
+/* 3. Configure your custom theme tokens here */
+@theme {
+  --font-onest: "Onest", sans-serif;
+}
