@@ -4,6 +4,7 @@ import { useGSAP } from '@gsap/react';
 import EcosystemShowcase from '../components/Operations';
 import DynamicMarquee from '../components/Marquee';
 import StackedProductCards from '../components/StackCards';
+import WhatWeDo from '../components/WhatWeDo';
 
 // Register the GSAP hook
 gsap.registerPlugin(useGSAP);
@@ -226,6 +227,7 @@ export default function Home() {
 
       <EcosystemShowcase />
       <DynamicMarquee />
+      <WhatWeDo />
       <StackedProductCards />
 
     </main>

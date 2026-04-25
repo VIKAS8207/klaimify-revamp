@@ -42,6 +42,7 @@ export default function PortfolioStack() {
        - bg-gradient-to-b handles the transition from Yellow to White
        - rounded-t-[100px] creates the large radius curve at the top
     */
+   <div className="bg-black">
     <div className="bg-gradient-to-b from-[#FFCC32] to-white rounded-t-[60px] md:rounded-t-[40px] min-h-screen font-onest text-white pb-32">
       
       {/* Header spacer to allow scrolling into the first card */}
@@ -138,6 +139,7 @@ export default function PortfolioStack() {
       
       {/* Footer spacer to allow scrolling past the last card */}
       <div className="h-[50vh]"></div>
+    </div>
     </div>
   );
 }
