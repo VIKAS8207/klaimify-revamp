@@ -38,20 +38,17 @@ const projects = [
 
 export default function PortfolioStack() {
   return (
-    /* UPDATED CONTAINER: 
-       - bg-gradient-to-b handles the transition from Yellow to White
-       - rounded-t-[100px] creates the large radius curve at the top
-    */
    <div className="bg-black">
-    <div className="bg-gradient-to-b from-[#FFCC32] to-white rounded-t-[60px] md:rounded-t-[40px] min-h-screen font-onest text-white pb-32">
+    {/* Adjusted pb-32 to pb-16 for a tighter transition to the next component */}
+    <div className="bg-gradient-to-b from-[#FFCC32] to-white rounded-t-[60px] md:rounded-t-[40px] min-h-screen font-onest text-white pb-16">
       
       {/* Header spacer to allow scrolling into the first card */}
       <div className="h-[20vh] flex items-end justify-center pb-10">
         <p className="text-gray-500 tracking-widest text-sm animate-bounce font-semibold uppercase">Scroll to view projects ↓</p>
       </div>
 
-      {/* Increased max-width here to 1450px for wider cards */}
-      <div className="relative max-w-[1450px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
+      {/* FIX: Increased gap-10 to gap-32 md:gap-[15vh] to give scrolling breathing room between cards */}
+      <div className="relative max-w-[1450px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-32 md:gap-[15vh]">
         {projects.map((project, index) => (
           <div
             key={project.id}
@@ -137,9 +134,7 @@ export default function PortfolioStack() {
         ))}
       </div>
       
-      {/* Footer spacer to allow scrolling past the last card */}
-      <div className="h-[50vh]"></div>
     </div>
-    </div>
+   </div>
   );
 }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap');
 
 
 /* 2. Import Tailwind v4 */
@@ -6,5 +6,5 @@
 
 /* 3. Configure your custom theme tokens here */
 @theme {
-  --font-onest: "Onest", sans-serif;
+  --font-stack: "Stack Sans Headline", sans-serif;
 }

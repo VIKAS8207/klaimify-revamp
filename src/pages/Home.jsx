@@ -5,6 +5,8 @@ import EcosystemShowcase from '../components/Operations';
 import DynamicMarquee from '../components/Marquee';
 import StackedProductCards from '../components/StackCards';
 import WhatWeDo from '../components/WhatWeDo';
+import ParaHint from '../components/ParaHint';
+import ServicesScroll from '../components/ServicesScrol';
 
 // Register the GSAP hook
 gsap.registerPlugin(useGSAP);
@@ -132,59 +134,67 @@ export default function Home() {
         />
 
         {/* 3. Hero Content Layer */}
-        <div className="relative z-20 flex flex-col items-center justify-center text-center px-6 h-full ">
+        <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 sm:px-6 h-full pt-16 sm:pt-0">
           
-          <div className="animate-item group inline-flex items-center gap-4 px-6 py-2.5 mb-8 rounded-full bg-white/30 backdrop-blur-lg border border-black/5 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.12)] transition-all duration-500 cursor-default">
+          <div className="animate-item group inline-flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-2 sm:py-2.5 mb-6 sm:mb-8 rounded-full bg-white/30 backdrop-blur-lg border border-black/5 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_20px_-6px_rgba(0,0,0,0.12)] transition-all duration-500 cursor-default">
   
-  {/* Logo Container - Gives the logo a dedicated "dock" */}
-  
-  {/* Logo Container - Scaled down to w-5 */}
-  <div className="flex items-center justify-center w-5 h-5 bg-[#FFCC32] rounded-full p-1 shadow-md transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[15deg]">
-    <img 
-      src="/image/klamifystamplogo.png" 
-      alt="Logo" 
-      className="w-full h-full object-contain" 
-    />
-  </div>
+            {/* Logo Container - Scaled down to w-5 */}
+            <div className="flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 bg-[#FFCC32] rounded-full p-0.5 sm:p-1 shadow-md transition-transform duration-500 group-hover:scale-110 group-hover:rotate-[15deg]">
+              <img 
+                src="/image/klamifystamplogo.png" 
+                alt="Logo" 
+                className="w-full h-full object-contain" 
+              />
+            </div>
 
-  {/* Text - Scaled down to 9px for a "precise" feel */}
-  <span className="font-onest text-[9px] font-bold text-black uppercase tracking-[0.2em] leading-none">
-    The Next Gen
-  </span>
+            {/* Text - Scaled down for mobile precision */}
+            <span className="font-onest text-[8px] sm:text-[9px] font-bold text-black uppercase tracking-[0.2em] leading-none mt-[1px]">
+              The Next Gen
+            </span>
 
-  {/* Decorative dot - Reduced size to match the slim profile */}
-  <div className="w-1 h-1 rounded-full bg-yellow-500 opacity-40 group-hover:opacity-100 transition-opacity" /></div>
+            {/* Decorative dot */}
+            <div className="w-1 h-1 rounded-full bg-yellow-500 opacity-40 group-hover:opacity-100 transition-opacity" />
+          </div>
   
 
           {/* Hero Title */}
-          <h1 className="animate-item font-onest text-6xl md:text-7xl font-bold text-black tracking-tighter leading-none mb-6">
-            Your On-Demand <span className="text-yellow-500">Custom</span> <br />
+          <h1 className="pointer-events-none font-stack font-bold animate-item text-5xl sm:text-6xl md:text-7xl lg:text-7xl text-black tracking-tighter leading-[1.1] sm:leading-none mb-4 sm:mb-6">
+            Your On-Demand <span className="text-yellow-500">Custom</span> <br className="hidden sm:block" />
             <span className="text-yellow-500">Software Development</span> Partner
           </h1>
 
-          {/* Description */}
-          <p className="animate-item text-gray-700 text-base md:text-lg max-w-2xl leading-relaxed mb-10">
-            Building industrial-grade digital infrastructure and robust software solutions 
+          <p className="pointer-events-none animate-item text-gray-700 text-sm sm:text-base md:text-lg max-w-[95%] sm:max-w-2xl leading-relaxed mb-8 sm:mb-10 px-2 sm:px-0">
+            Building industrial-grade digital infrastructure and 
+            <span className="relative inline-block mx-1">
+              <span className="relative z-10 px-1">robust software solutions</span>
+              <span className="absolute inset-0 bg-yellow-200/70 -skew-x-12 -rotate-1 rounded-sm scale-110 -z-10"></span>
+            </span>
             designed for the modern enterprise scale.
           </p>
 
           {/* Action Area: Button & Avatars */}
-          <div className="animate-item flex flex-col sm:flex-row justify-center items-center gap-6">
+          <div className="animate-item flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 w-full max-w-sm sm:max-w-none">
             
-            <button className="px-10 py-4 bg-black text-white font-bold rounded-full hover:bg-gray-800 transition-all duration-300 shadow-xl shadow-black/10 shrink-0">
-              Book a meeting now
+            <button className="group relative w-auto px-8 sm:px-10 py-3.5 sm:py-4 bg-black text-white font-bold rounded-full overflow-hidden border border-black shadow-xl shadow-black/10 shrink-0 text-sm sm:text-base">
+              {/* The Rising White Bubble - Increased to 400% width and -100% top for foolproof coverage */}
+              <span className="cursor-pointer absolute top-[130%] left-1/2 w-[400%] aspect-square bg-white rounded-full -translate-x-1/2 transition-all duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:top-[-100%] z-0"></span>
+              
+              {/* The Button Text */}
+              <span className="relative z-10 transition-colors duration-500 group-hover:text-black cursor-pointer">
+                Book a meeting now
+              </span>
             </button>
 
-            <div className="flex items-center gap-3 border border-gray-200 bg-white/60 backdrop-blur-sm py-2 px-4 rounded-full shadow-sm">
+            <div className="flex items-center justify-center sm:justify-start gap-3 border border-gray-200 bg-white/60 backdrop-blur-sm py-2 px-4 rounded-full shadow-sm w-auto">
               <div className="flex -space-x-3 shrink-0">
-                <img className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="https://i.pravatar.cc/100?img=11" alt="Expert Face" />
-                <img className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="https://i.pravatar.cc/100?img=33" alt="Expert Face" />
-                <img className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="https://i.pravatar.cc/100?img=68" alt="Expert Face" />
+                <img className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-white object-cover shadow-sm" src="https://i.pravatar.cc/100?img=11" alt="Expert Face" />
+                <img className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-white object-cover shadow-sm" src="https://i.pravatar.cc/100?img=33" alt="Expert Face" />
+                <img className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-white object-cover shadow-sm" src="https://i.pravatar.cc/100?img=68" alt="Expert Face" />
               </div>
 
               <div className="text-left flex flex-col justify-center">
-                <span className="text-sm font-semibold text-gray-800 leading-none mb-1">Meet our team</span>
-                <span className="text-xs text-gray-500 leading-none">They are the professionals</span>
+                <span className="text-[13px] sm:text-sm font-semibold text-gray-800 leading-none mb-1 pointer-events-none">Meet our team</span>
+                <span className="text-[10px] sm:text-xs text-gray-500 leading-none pointer-events-none">They are the professionals</span>
               </div>
             </div>
 
@@ -192,8 +202,8 @@ export default function Home() {
         </div>
 
         {/* 4. Squiggly Scroll Indicator Layer */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center justify-center animate-item">
-          <div className="relative flex items-center justify-center w-18 h-18">
+        <div className="absolute bottom-12 sm:bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center justify-center animate-item scale-90 sm:scale-100">
+          <div className="relative flex items-center justify-center w-16 h-16 sm:w-18 sm:h-18">
             {/* Dynamically Generated Bumpy Circle */}
             <svg 
               ref={squigglyCircleRef}
@@ -208,7 +218,7 @@ export default function Home() {
             
             {/* Static Down Arrow */}
             <svg 
-              className="w-6 h-6 text-white relative z-10" 
+              className="w-5 h-5 sm:w-6 sm:h-6 text-white relative z-10" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -229,6 +239,8 @@ export default function Home() {
       <DynamicMarquee />
       <WhatWeDo />
       <StackedProductCards />
+      <ParaHint />
+      <ServicesScroll />
 
     </main>
   );
