@@ -53,13 +53,13 @@ export default function WhatWeDo() {
   // Mobile horizontal scroll controls
   const scrollPrev = () => {
     if (mobileTrackRef.current) {
-      mobileTrackRef.current.scrollBy({ left: -340, behavior: 'smooth' });
+      mobileTrackRef.current.scrollBy({ left: -320, behavior: 'smooth' });
     }
   };
 
   const scrollNext = () => {
     if (mobileTrackRef.current) {
-      mobileTrackRef.current.scrollBy({ left: 340, behavior: 'smooth' });
+      mobileTrackRef.current.scrollBy({ left: 320, behavior: 'smooth' });
     }
   };
 
@@ -92,16 +92,16 @@ export default function WhatWeDo() {
   ];
 
   return (
-    /* OUTER WRAPPER: Conditionally tall for desktop scroll, normal height for mobile */
+    /* OUTER WRAPPER: Conditionally tall for desktop scroll, normal document flow for mobile */
     <div 
       ref={targetRef} 
-      className={`relative bg-[#050505] text-white font-sans selection:bg-gray-800 selection:text-white ${isDesktop ? 'h-[500vh]' : 'pb-32 pt-24'}`}
+      className={`relative bg-[#050505] text-white font-sans selection:bg-gray-800 selection:text-white ${isDesktop ? 'h-[500vh]' : 'py-24'}`}
     >
       
-      {/* STICKY CONTAINER (Desktop) vs STATIC CONTAINER (Mobile) */}
-      <div className={`${isDesktop ? 'sticky top-0 h-screen overflow-hidden' : 'relative w-full overflow-hidden'} flex flex-col justify-center`}>
+      {/* CONTAINER: Sticky on Desktop, Flowing block on Mobile */}
+      <div className={`${isDesktop ? 'sticky top-0 h-screen overflow-hidden flex flex-col justify-center' : 'w-full flex flex-col'}`}>
         
-        {/* BACKGROUND SQUIGGLY LINE (The Loop - Only animated/visible properly on desktop) */}
+        {/* BACKGROUND SQUIGGLY LINE (The Loop - Desktop Only) */}
         {isDesktop && (
           <div className="absolute inset-0 z-0 pointer-events-none">
             <svg 
@@ -114,7 +114,7 @@ export default function WhatWeDo() {
                 d="M -100 100 C 400 100, 600 800, 900 600 C 1200 400, 600 200, 800 900 C 900 1200, 1300 800, 1600 900"
                 fill="none"
                 stroke="#eab308" /* Yellow */
-                strokeWidth="15"
+                strokeWidth="75"
                 strokeLinecap="round"
                 style={{
                   strokeDasharray: pathLength,
@@ -127,9 +127,12 @@ export default function WhatWeDo() {
           </div>
         )}
 
-        {/* STATIC LAYOUT ELEMENTS */}
-        <div className="absolute top-[12%] md:top-[15%] left-6 md:left-[15vw] z-20">
-          <div className="text-[10px] text-gray-500 font-bold tracking-[0.15em] leading-tight flex gap-2 md:flex-col md:gap-1 mb-4 md:absolute md:-top-6 md:-left-[10vw]">
+        {/* ==========================================
+            STATIC LAYOUT ELEMENTS 
+            ========================================== */}
+        {/* Header - Flow natively on mobile, absolute on desktop */}
+        <div className={`${isDesktop ? 'absolute top-[12%] md:top-[15%] left-6 md:left-[15vw] z-20' : 'px-6 mb-8 z-20 w-full'}`}>
+          <div className={`text-[10px] text-gray-500 font-bold tracking-[0.15em] leading-tight flex gap-2 md:flex-col md:gap-1 mb-4 ${isDesktop ? 'md:absolute md:-top-6 md:-left-[10vw]' : ''}`}>
             <span>TYPES OF</span>
             <span>ACTIVITIES</span>
           </div>
@@ -145,42 +148,29 @@ export default function WhatWeDo() {
           </p>
         </div>
 
-        {/* Mobile Left & Right Arrows (Hidden on Desktop) */}
-        {!isDesktop && (
-          <div className="absolute top-[12%] right-6 flex gap-3 z-20">
-            <button onClick={scrollPrev} className="w-10 h-10 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#2a2a2a] transition-colors border border-white/5 active:scale-95">
-              <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-            </button>
-            <button onClick={scrollNext} className="w-10 h-10 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#2a2a2a] transition-colors border border-white/5 active:scale-95">
-              <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </button>
-          </div>
-        )}
-
         {/* ==========================================
             CARDS CONTAINER
             ========================================== */}
-        <div className={`${isDesktop ? 'absolute top-[28%] left-0 w-full h-full overflow-visible pointer-events-none' : 'mt-24 w-full'}`}>
+        {/* Track Wrapper */}
+        <div className={`${isDesktop ? 'absolute top-[28%] left-0 w-full h-full overflow-visible pointer-events-none' : 'w-full relative z-10'}`}>
           <div 
             ref={mobileTrackRef}
-            className={`flex flex-row gap-6 z-10 ${
+            className={`flex flex-row gap-6 ${
               isDesktop 
                 ? 'w-max pl-[15vw] pr-[10vw] pointer-events-auto will-change-transform' 
-                : 'w-full overflow-x-hidden pointer-events-auto px-6' /* overflow-x-hidden hides scrollbar but JS can scroll */
+                : 'w-full overflow-x-auto px-6 pb-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden' 
             }`}
             style={{ 
-              /* Math Fix: 100% is the full track width. 100vw is the screen width.
-                This stops the scroll exactly when the right edge of the track touches the right edge of the screen! 
-              */
               transform: isDesktop ? `translateX(calc(-${scrollProgress} * (100% - 100vw)))` : 'none',
-              transition: isDesktop ? 'transform 0.1s ease-out' : 'none'
+              transition: isDesktop ? 'transform 0.1s ease-out' : 'none',
+              scrollbarWidth: isDesktop ? 'auto' : 'none', // Hides scrollbar in Firefox on mobile
             }}
           >
             
             {services.map((service, index) => (
               <div 
                 key={index}
-                className="w-[300px] md:w-[380px] h-[400px] md:h-[480px] rounded-xl relative overflow-hidden flex-shrink-0 group shadow-2xl bg-[#111] cursor-pointer"
+                className={`w-[280px] md:w-[380px] h-[380px] md:h-[480px] rounded-xl relative overflow-hidden flex-shrink-0 group shadow-2xl bg-[#111] cursor-pointer ${!isDesktop ? 'snap-center' : ''}`}
               >
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
@@ -193,17 +183,17 @@ export default function WhatWeDo() {
                   <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black/80"></div>
                 </div>
 
-                {/* Hover Text Animation (Moves Up) */}
-                <div className="absolute top-10 left-0 w-full z-20 overflow-hidden h-10 px-4">
-                  <div className="flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-10">
+                {/* Hover Text Animation Container - Increased Height to accommodate 2 lines */}
+                <div className="absolute top-8 left-0 w-full z-20 overflow-hidden h-[5rem] px-4 pointer-events-none">
+                  <div className="flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[5rem]">
                     
                     {/* Primary Text (Visible by default) */}
-                    <h3 className="h-10 text-2xl font-semibold tracking-tight text-white flex items-center justify-center text-center drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
+                    <h3 className="h-[5rem] text-xl md:text-2xl font-semibold tracking-tight text-white flex items-center justify-center text-center drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] leading-tight px-2">
                       {service.title}
                     </h3>
                     
                     {/* Secondary Text (Slides in from bottom on hover) */}
-                    <h3 className="h-10 text-2xl font-semibold tracking-tight text-white flex items-center justify-center text-center drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
+                    <h3 className="h-[5rem] text-xl md:text-2xl font-semibold tracking-tight text-white flex items-center justify-center text-center drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] leading-tight px-2">
                       {service.title}
                     </h3>
                     
@@ -214,6 +204,18 @@ export default function WhatWeDo() {
 
           </div>
         </div>
+
+        {/* Mobile Left & Right Arrows (At the bottom right on mobile) */}
+        {!isDesktop && (
+          <div className="flex justify-end gap-4 px-6 mt-6 z-20 w-full">
+            <button onClick={scrollPrev} className="w-12 h-12 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#2a2a2a] transition-colors border border-white/10 active:scale-95 shadow-lg">
+              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button onClick={scrollNext} className="w-12 h-12 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#2a2a2a] transition-colors border border-white/10 active:scale-95 shadow-lg">
+              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </button>
+          </div>
+        )}
 
       </div>
     </div>
