@@ -6,7 +6,7 @@ import DynamicMarquee from '../components/Marquee';
 import StackedProductCards from '../components/StackCards';
 import WhatWeDo from '../components/WhatWeDo';
 import ParaHint from '../components/ParaHint';
-import ServicesScroll from '../components/ServicesScrol';
+import IndustriesServe from '../components/Industries';
 
 // Register the GSAP hook
 gsap.registerPlugin(useGSAP);
@@ -239,8 +239,8 @@ export default function Home() {
       <DynamicMarquee />
       <WhatWeDo />
       <StackedProductCards />
+      <IndustriesServe />
       <ParaHint />
-      <ServicesScroll />
 
     </main>
   );
