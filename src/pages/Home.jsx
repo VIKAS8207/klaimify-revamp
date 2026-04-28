@@ -7,6 +7,7 @@ import StackedProductCards from '../components/StackCards';
 import WhatWeDo from '../components/WhatWeDo';
 import ParaHint from '../components/ParaHint';
 import IndustriesServe from '../components/Industries';
+import StickyNotesFeatures from '../components/StickyNotesFeatures'; 
 
 // Register the GSAP hook
 gsap.registerPlugin(useGSAP);
@@ -240,7 +241,9 @@ export default function Home() {
       <WhatWeDo />
       <StackedProductCards />
       <IndustriesServe />
+      <StickyNotesFeatures />
       <ParaHint />
+      
 
     </main>
   );
