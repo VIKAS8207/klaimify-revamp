@@ -2,11 +2,11 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import EcosystemShowcase from '../components/Operations';
-import DynamicMarquee from '../components/Marquee';
-import StackedProductCards from '../components/StackCards';
+import DynamicImageMarquee from '../components/Marquee';
+import PortfolioStack from '../components/StackCards';
 import WhatWeDo from '../components/WhatWeDo';
-import ParaHint from '../components/ParaHint';
-import IndustriesServe from '../components/Industries';
+import LandingPage from '../components/ParaHint';
+import CenteredImage from '../components/Industries';
 import StickyNotesFeatures from '../components/StickyNotesFeatures'; 
 
 // Register the GSAP hook
@@ -159,7 +159,7 @@ export default function Home() {
   
 
           {/* Hero Title */}
-          <h1 className="pointer-events-none font-stack font-bold animate-item text-5xl sm:text-6xl md:text-7xl lg:text-7xl text-black tracking-tighter leading-[1.1] sm:leading-none mb-4 sm:mb-6">
+          <h1 className="pointer-events-none font-anybody font-bold animate-item text-5xl sm:text-6xl md:text-7xl lg:text-7xl text-black tracking-tighter leading-[1.1] sm:leading-none mb-4 sm:mb-6">
             Your On-Demand <span className="text-yellow-500">Custom</span> <br className="hidden sm:block" />
             <span className="text-yellow-500">Software Development</span> Partner
           </h1>
@@ -237,12 +237,13 @@ export default function Home() {
       </section>
 
       <EcosystemShowcase />
-      <DynamicMarquee />
+      <DynamicImageMarquee />
       <WhatWeDo />
-      <StackedProductCards />
-      <IndustriesServe />
+      <PortfolioStack />
+      <CenteredImage />
       <StickyNotesFeatures />
-      <ParaHint />
+      <LandingPage />
+      
       
 
     </main>
