@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import EcosystemShowcase from '../components/Operations';
-import DynamicImageMarquee from '../components/Marquee';
-import PortfolioStack from '../components/StackCards';
-import WhatWeDo from '../components/WhatWeDo';
-import LandingPage from '../components/ParaHint';
-import CenteredImage from '../components/Industries';
-import StickyNotesFeatures from '../components/StickyNotesFeatures'; 
+import EcosystemShowcase from '../components/Home/Operations';
+import DynamicImageMarquee from '../components/Home/Marquee';
+import PortfolioStack from '../components/Home/StackCards';
+import WhatWeDo from '../components/Home/WhatWeDo';
+import LandingPage from '../components/Home/ParaHint';
+import CenteredImage from '../components/Home/Industries';
+import StickyNotesFeatures from '../components/Home/StickyNotesFeatures'; 
 
 // Register the GSAP hook
 gsap.registerPlugin(useGSAP);
